@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css"
+        integrity="sha512-RntatPOhEcQEA81gC/esYoCkGkL7AYV7TeTPoU+R9zE44/yWxVvLIBfBSaMu78rhoDd73ZeRHXRJN5+aPEK53Q=="
+        crossorigin="anonymous" />
+    <title>Glass Cutter</title>
+</head>
+
+<body>
+    <div class="flex mt-2 bg-gray-50">
+        <div class="m-auto">
+            
+                <div>
+                    <input
+                        class="border-2 border-gray-300 p-2 m-2 focus:border-blue-300 outline-none rounded-lg tracking-wider"
+                        type="text" placeholder="Main Height" id="mainHeight" value="" />
+                    <input
+                        class="border-2 border-gray-300 p-2 m-2 focus:border-blue-300 outline-none rounded-lg tracking-wider"
+                        type="text" placeholder="Main Width" value="" id="mainWidth" />
+                    <button id="item" type="button"
+                        class="p-2 rounded-lg hover:bg-blue-700 hover:text-white border-2 border-blue-700">Add
+                        item</button>
+
+                </div>
+                <div id="input">
+                    <div>
+                        <input
+                            class="ab border-2 border-gray-300 p-2 m-2 focus:border-blue-300 outline-none rounded-lg tracking-wider"
+                            type="text" placeholder="Height 1" id="height1" value="" class="heightInput" />
+                        <input
+                            class="ab border-2 border-gray-300 p-2 m-2 focus:border-blue-300 outline-none rounded-lg tracking-wider"
+                            type="text" placeholder="Width 1" id="width1" value="" class="widthInput" />
+                    </div>
+
+                </div>
+                <div class="text-center mt-4">
+                    <button class="p-2 rounded-lg hover:bg-black hover:text-white border-2 border-black" type="submit"
+                        id="submit">
+                        Submit
+                    </button>
+                </div>
+        
+        </div>
+    </div>
+    <style>
+        #canvas {
+            border: 2px solid #000;
+            margin: 4rem;
+           
+        }
+    </style>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+        <script src="index.js"></script>
+</body>
+
+</html>
