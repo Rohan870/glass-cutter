@@ -1,5 +1,5 @@
-const mainHeight = document.getElementById("mainHeight").value*5;
-const mainWidth = document.getElementById("mainWidth").value*5;
+const mainHeight = document.getElementById("mainHeight");
+const mainWidth = document.getElementById("mainWidth");
 const submit = document.getElementById("submit");
 const canvas = document.getElementById("canvas");
 const item = document.getElementById("item");
@@ -71,16 +71,16 @@ item.addEventListener("click", (e) => {
 });
 submit.addEventListener("click", draw)
 fliping.onclick = () => {
-    let tempwidth = mainWidth;
+    let tempwidth=mainWidth.value;
     if (reverse == false) {
         reverse = true;
-        mainWidth = mainHeight;
-        mainHeight = tempwidth;
+        mainWidth.value=mainHeight.value;
+        mainHeight.value=tempwidth;
     }
     else if (reverse == true) {
         reverse = false;
-        mainWidth = mainHeight;
-        mainHeight = tempwidth;
+        mainWidth.value=mainHeight.value;
+        mainHeight.value=tempwidth;
     }
 }
 
@@ -100,8 +100,8 @@ function draw() {
     var ctx = canvas.getContext('2d');
     ctx.lineWidth = 1;
     ctx.shadowColor = "white";
-    canvas.height = mainHeight;
-    canvas.width = mainWidth;
+    canvas.height = mainHeight.value*5;
+    canvas.width = mainWidth.value*5;
     console.log(valueoverflow());
     if (valueoverflow()) {
         alert("please enter appropriate width or hight");
@@ -117,7 +117,7 @@ function draw() {
             (i, index) => {
                 tempwidth += parseInt(i.width);
 
-                if (tempwidth > mainWidth) {
+                if (tempwidth > mainWidth.value*5) {
                     x = 0;
                     y += parseInt(array[index - 1].height);
                     overheight = y;
@@ -125,7 +125,7 @@ function draw() {
                     tempx = 0;
                     console.log(overheight);
                 }
-                if (overheight + parseInt(i.height) > mainHeight) {
+                if (overheight + parseInt(i.height) > mainHeight.value*5) {
                     alert("please enter appropriate height")
                     return;
                 }
@@ -140,7 +140,7 @@ function draw() {
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillStyle = "#FFFFFF";
-                ctx.fillText(i.height + " X " + i.width, (x + (i.width / 2)), (y + (i.height / 2)));
+                ctx.fillText(i.height + " X " + i.width, x + (i.width / 2), y + (i.height / 2));
                 ctx.fill();
             }
         )
@@ -156,23 +156,23 @@ function getDimensions(i) {
     let width = flip(tempheight, tempwidth).width;
 
 
-    return { height: height, width: width };
+    return { height: height, width: width};
 }
 
 
 function flip(tempheight, tempwidth) {
     let height = 0;
     let width = 0;
-
+    
     if (reverse == true) {
         height = tempwidth
         width = tempheight
-
+        
     }
     else {
         width = tempwidth;
         height = tempheight;
-
+        
     }
     return { height: height, width: width }
 }
@@ -185,7 +185,7 @@ function valueoverflow() {
 
     }
 
-    if (x > mainHeight * mainWidth) {
+    if (x > mainHeight.value*5 * mainWidth.value*5) {
         return true;
     }
     else {
