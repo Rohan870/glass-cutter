@@ -74,13 +74,13 @@ fliping.onclick = () => {
     let tempwidth = mainWidth.value;
     if (reverse == false) {
         reverse = true;
-        mainWidth.value = mainHeight.value;
-        mainHeight.value = tempwidth;
+        mainWidth.value = mainHeight.value*5;
+        mainHeight.value = tempwidth*5;
     }
     else if (reverse == true) {
         reverse = false;
-        mainWidth.value = mainHeight.value;
-        mainHeight.value = tempwidth;
+        mainWidth.value = mainHeight.value*5;
+        mainHeight.value = tempwidth*5;
     }
 }
 
@@ -100,8 +100,8 @@ function draw() {
     var ctx = canvas.getContext('2d');
     ctx.lineWidth = 1;
     ctx.shadowColor = "white";
-    canvas.height = mainHeight.value;
-    canvas.width = mainWidth.value;
+    canvas.height = mainHeight.value*5;
+    canvas.width = mainWidth.value*5;
     console.log(valueoverflow());
     if (valueoverflow()) {
         alert("please enter appropriate width or hight");
@@ -135,12 +135,12 @@ function draw() {
                 }
                 tempx += parseInt(i.width);
                 ctx.fillStyle = colorarray[Math.floor((Math.random() * colorarray.length))];
-                ctx.fillRect(x, y, i.width, i.height);
+                ctx.fillRect(x*5, y*5, i.width*5, i.height*5);
                 ctx.font = "10px Times Roman";
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillStyle = "#FFFFFF";
-                ctx.fillText(i.height + " X " + i.width, x + (i.width / 2), y + (i.height / 2));
+                ctx.fillText(i.height + " X " + i.width, (x + (i.width / 2))*5, (y + (i.height / 2))*5);
                 ctx.fill();
             }
         )
