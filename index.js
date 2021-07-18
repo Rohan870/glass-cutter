@@ -1,5 +1,5 @@
-const mainHeight = document.getElementById("mainHeight");
-const mainWidth = document.getElementById("mainWidth");
+const mainHeight = document.getElementById("mainHeight").value*5;
+const mainWidth = document.getElementById("mainWidth").value*5;
 const submit = document.getElementById("submit");
 const canvas = document.getElementById("canvas");
 const item = document.getElementById("item");
@@ -71,16 +71,16 @@ item.addEventListener("click", (e) => {
 });
 submit.addEventListener("click", draw)
 fliping.onclick = () => {
-    let tempwidth = mainWidth.value;
+    let tempwidth = mainWidth;
     if (reverse == false) {
         reverse = true;
-        mainWidth.value = mainHeight.value*5;
-        mainHeight.value = tempwidth*5;
+        mainWidth = mainHeight;
+        mainHeight = tempwidth;
     }
     else if (reverse == true) {
         reverse = false;
-        mainWidth.value = mainHeight.value*5;
-        mainHeight.value = tempwidth*5;
+        mainWidth = mainHeight;
+        mainHeight = tempwidth;
     }
 }
 
@@ -100,8 +100,8 @@ function draw() {
     var ctx = canvas.getContext('2d');
     ctx.lineWidth = 1;
     ctx.shadowColor = "white";
-    canvas.height = mainHeight.value*5;
-    canvas.width = mainWidth.value*5;
+    canvas.height = mainHeight;
+    canvas.width = mainWidth;
     console.log(valueoverflow());
     if (valueoverflow()) {
         alert("please enter appropriate width or hight");
@@ -117,7 +117,7 @@ function draw() {
             (i, index) => {
                 tempwidth += parseInt(i.width);
 
-                if (tempwidth > mainWidth.value*5) {
+                if (tempwidth > mainWidth) {
                     x = 0;
                     y += parseInt(array[index - 1].height);
                     overheight = y;
@@ -125,7 +125,7 @@ function draw() {
                     tempx = 0;
                     console.log(overheight);
                 }
-                if (overheight + parseInt(i.height) > mainHeight.value*5) {
+                if (overheight + parseInt(i.height) > mainHeight) {
                     alert("please enter appropriate height")
                     return;
                 }
@@ -185,7 +185,7 @@ function valueoverflow() {
 
     }
 
-    if (x > mainHeight.value*5 * mainWidth.value*5) {
+    if (x > mainHeight * mainWidth) {
         return true;
     }
     else {
