@@ -4,6 +4,7 @@ const submit = document.getElementById("submit");
 const canvas = document.getElementById("canvas");
 const item = document.getElementById("item");
 const fliping = document.getElementById("flip");
+const area = document.getElementById("areaoutput");
 let count = 1;
 let reverse = false;
 let colorarray = [
@@ -71,16 +72,16 @@ item.addEventListener("click", (e) => {
 });
 submit.addEventListener("click", draw)
 fliping.onclick = () => {
-    let tempwidth=mainWidth.value;
+    let tempwidth = mainWidth.value;
     if (reverse == false) {
         reverse = true;
-        mainWidth.value=mainHeight.value;
-        mainHeight.value=tempwidth;
+        mainWidth.value = mainHeight.value;
+        mainHeight.value = tempwidth;
     }
     else if (reverse == true) {
         reverse = false;
-        mainWidth.value=mainHeight.value;
-        mainHeight.value=tempwidth;
+        mainWidth.value = mainHeight.value;
+        mainHeight.value = tempwidth;
     }
     submit.click();
 }
@@ -92,7 +93,7 @@ function draw() {
     for (let i = 1; i <= count; i++) {
         array.push(getDimensions(i));
     }
-
+    area.innerHTML = getArea();
     array.sort(function (a, b) {
         return a.height - b.height;
     });
@@ -101,8 +102,8 @@ function draw() {
     var ctx = canvas.getContext('2d');
     ctx.lineWidth = 1;
     ctx.shadowColor = "white";
-    canvas.height = mainHeight.value*5;
-    canvas.width = mainWidth.value*5;
+    canvas.height = mainHeight.value * 5;
+    canvas.width = mainWidth.value * 5;
     console.log(valueoverflow());
     if (valueoverflow()) {
         alert("please enter appropriate width or hight");
@@ -119,7 +120,7 @@ function draw() {
             (i, index) => {
                 tempwidth += parseInt(i.width);
 
-                if (tempwidth > mainWidth.value*5) {
+                if (tempwidth > mainWidth.value * 5) {
                     x = 0;
                     y += parseInt(array[index - 1].height);
                     overheight = y;
@@ -127,7 +128,7 @@ function draw() {
                     tempx = 0;
                     console.log(overheight);
                 }
-                if (overheight + parseInt(i.height) > mainHeight.value*5) {
+                if (overheight + parseInt(i.height) > mainHeight.value * 5) {
                     alert("please enter appropriate height")
                     return;
                 }
@@ -142,7 +143,7 @@ function draw() {
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillStyle = "#FFFFFF";
-                ctx.fillText(i.height/5 + " X " + i.width/5, x + (i.width / 2), y + (i.height / 2));
+                ctx.fillText(i.height / 5 + " X " + i.width / 5, x + (i.width / 2), y + (i.height / 2));
                 ctx.fill();
             }
         )
@@ -151,30 +152,30 @@ function draw() {
 }
 
 function getDimensions(i) {
-    let tempheight = document.getElementById(`height${i}`).value*5;
-    let tempwidth = document.getElementById(`width${i}`).value*5;
+    let tempheight = document.getElementById(`height${i}`).value * 5;
+    let tempwidth = document.getElementById(`width${i}`).value * 5;
 
     let height = flip(tempheight, tempwidth).height;
     let width = flip(tempheight, tempwidth).width;
 
 
-    return { height: height, width: width};
+    return { height: height, width: width };
 }
 
 
 function flip(tempheight, tempwidth) {
     let height = 0;
     let width = 0;
-    
+
     if (reverse == true) {
         height = tempwidth
         width = tempheight
-        
+
     }
     else {
         width = tempwidth;
         height = tempheight;
-        
+
     }
     return { height: height, width: width }
 }
@@ -187,7 +188,7 @@ function valueoverflow() {
 
     }
 
-    if (x > mainHeight.value*5 * mainWidth.value*5) {
+    if (x > mainHeight.value * 5 * mainWidth.value * 5) {
         return true;
     }
     else {
@@ -196,7 +197,16 @@ function valueoverflow() {
 
 }
 
+function getArea() {
+    let x = 0;
 
+    for (let i = 1; i <= count; i++) {
+        x += parseInt(getDimensions(i).height) * parseInt(getDimensions(i).width);
+
+    }
+    let y=((parseInt(mainHeight.value) * parseInt(mainWidth.value)*25) - x)/25
+    return "Your remaining area is "+ y
+}
 
 function greatestHeight() {
     let height = 0;
