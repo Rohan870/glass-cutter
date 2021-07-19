@@ -142,7 +142,7 @@ function draw() {
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillStyle = "#FFFFFF";
-                ctx.fillText(i.height/38 + " X " + i.width/38, x + (i.width / 2), y + (i.height / 2));
+                ctx.fillText(i.height + " X " + i.width, x + (i.width / 2), y + (i.height / 2));
                 ctx.fill();
             }
         )
