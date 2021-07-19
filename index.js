@@ -101,8 +101,8 @@ function draw() {
     var ctx = canvas.getContext('2d');
     ctx.lineWidth = 1;
     ctx.shadowColor = "white";
-    canvas.height = mainHeight.value;
-    canvas.width = mainWidth.value;
+    canvas.height = mainHeight.value*5;
+    canvas.width = mainWidth.value*5;
     console.log(valueoverflow());
     if (valueoverflow()) {
         alert("please enter appropriate width or hight");
@@ -119,7 +119,7 @@ function draw() {
             (i, index) => {
                 tempwidth += parseInt(i.width);
 
-                if (tempwidth > mainWidth.value) {
+                if (tempwidth > mainWidth.value*5) {
                     x = 0;
                     y += parseInt(array[index - 1].height);
                     overheight = y;
@@ -127,7 +127,7 @@ function draw() {
                     tempx = 0;
                     console.log(overheight);
                 }
-                if (overheight + parseInt(i.height) > mainHeight.value) {
+                if (overheight + parseInt(i.height) > mainHeight.value*5) {
                     alert("please enter appropriate height")
                     return;
                 }
@@ -142,7 +142,7 @@ function draw() {
                 ctx.textAlign = "center";
                 ctx.textBaseline = "middle";
                 ctx.fillStyle = "#FFFFFF";
-                ctx.fillText(i.height + " X " + i.width, x + (i.width / 2), y + (i.height / 2));
+                ctx.fillText(i.height/5 + " X " + i.width/5, x + (i.width / 2), y + (i.height / 2));
                 ctx.fill();
             }
         )
@@ -151,8 +151,8 @@ function draw() {
 }
 
 function getDimensions(i) {
-    let tempheight = document.getElementById(`height${i}`).value;
-    let tempwidth = document.getElementById(`width${i}`).value;
+    let tempheight = document.getElementById(`height${i}`).value*5;
+    let tempwidth = document.getElementById(`width${i}`).value*5;
 
     let height = flip(tempheight, tempwidth).height;
     let width = flip(tempheight, tempwidth).width;
@@ -187,7 +187,7 @@ function valueoverflow() {
 
     }
 
-    if (x > mainHeight.value * mainWidth.value) {
+    if (x > mainHeight.value*5 * mainWidth.value*5) {
         return true;
     }
     else {
