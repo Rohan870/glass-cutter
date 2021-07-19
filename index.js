@@ -101,8 +101,8 @@ function draw() {
     var ctx = canvas.getContext('2d');
     ctx.lineWidth = 1;
     ctx.shadowColor = "white";
-    canvas.height = mainHeight.value*38;
-    canvas.width = mainWidth.value*38;
+    canvas.height = mainHeight.value;
+    canvas.width = mainWidth.value;
     console.log(valueoverflow());
     if (valueoverflow()) {
         alert("please enter appropriate width or hight");
@@ -119,7 +119,7 @@ function draw() {
             (i, index) => {
                 tempwidth += parseInt(i.width);
 
-                if (tempwidth > mainWidth.value*38) {
+                if (tempwidth > mainWidth.value) {
                     x = 0;
                     y += parseInt(array[index - 1].height);
                     overheight = y;
@@ -127,7 +127,7 @@ function draw() {
                     tempx = 0;
                     console.log(overheight);
                 }
-                if (overheight + parseInt(i.height) > mainHeight.value*38) {
+                if (overheight + parseInt(i.height) > mainHeight.value) {
                     alert("please enter appropriate height")
                     return;
                 }
@@ -151,8 +151,8 @@ function draw() {
 }
 
 function getDimensions(i) {
-    let tempheight = document.getElementById(`height${i}`).value*38;
-    let tempwidth = document.getElementById(`width${i}`).value*38;
+    let tempheight = document.getElementById(`height${i}`).value;
+    let tempwidth = document.getElementById(`width${i}`).value;
 
     let height = flip(tempheight, tempwidth).height;
     let width = flip(tempheight, tempwidth).width;
@@ -187,7 +187,7 @@ function valueoverflow() {
 
     }
 
-    if (x > mainHeight.value*38 * mainWidth.value*38) {
+    if (x > mainHeight.value * mainWidth.value) {
         return true;
     }
     else {
